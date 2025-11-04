@@ -19,6 +19,22 @@ Publish options
   2. In the repo Settings > Pages, select the `main` branch and `/ (root)` folder as the source.
   3. Wait a minute — your site will be available at `https://<username>.github.io/<repo>`.
 
+Automatic deploy via GitHub Actions
+I added a GitHub Actions workflow at `.github/workflows/pages-deploy.yml` that will automatically publish your site to GitHub Pages when you push to `main`.
+
+To publish from your local machine (PowerShell commands):
+```powershell
+# from the project root folder
+git init
+git add .
+git commit -m "Prepare site for publish"
+git branch -M main
+git remote add origin https://github.com/<your-username>/<your-repo>.git
+git push -u origin main
+```
+
+After the push completes, GitHub will run the workflow and you should see the Pages deployment in the repository Actions/Pages sections. The site will be available at `https://<your-username>.github.io/<your-repo>` (or the repo's Pages URL shown in Settings → Pages).
+
 - Netlify / Vercel (drag-and-drop or connect repo):
   - Create a Netlify account, drag-and-drop the project folder into "Sites" (no build step required).
   - Or connect your Git repository and deploy. Adjust publish directory to `/`.
